@@ -5,7 +5,7 @@ import java.util.Scanner;
 public class EirCode {
 
 	public static void main(String[] args) {
-		String[] eirArray = {"D02 Y006", "D04 C932", "D15 XR2R", "D03 RR27", "D24 H510"};
+		String[] eirArray = {"D02Y006", "D04C932", "D15XR2R", "D03RR27", "D24H510"};
 		String[] addressArray = {"5 Merrion Square North, Dublin 2", "10 Burlington Road, Dublin 4", "Dunsink Observatory, Dunsink Lane, Dublin 15", "26 KINCORA ROAD, Clontarf, Dublin 3", "Partas, 4A BROOKFIELD ENTERPRISE CENTRE, Dublin 24"};
 
 
@@ -22,6 +22,8 @@ public class EirCode {
 			Scanner scan = new Scanner(System.in);
 
 			input = scan.nextLine();
+			
+			input = input.replaceAll("\\s+","");
 
 			for(int i = 0; i < eirArray.length; ++i){
 				if(input.equalsIgnoreCase(eirArray[i])){
@@ -31,7 +33,7 @@ public class EirCode {
 			}
 
 			if(!found){
-				if(input.length() != 8){
+				if(input.length() != 7){
 					System.out.println("Valid format is XXX XXXX");
 				}else{
 					System.out.println("Address not found");
