@@ -17,7 +17,7 @@ public class EirCode {
 		do{
 			String input = "";
 			boolean found = false;
-			System.out.println("Please input EirCode: ");
+			System.out.println("Please input EirCode (Valid format is XXX XXXX): ");
 
 			Scanner scan = new Scanner(System.in);
 
@@ -30,7 +30,13 @@ public class EirCode {
 				}
 			}
 
-			if(!found) System.out.println("Address not found");
+			if(!found){
+				if(input.length() != 8){
+					System.out.println("Valid format is XXX XXXX");
+				}else{
+					System.out.println("Address not found");
+				}
+			}
 
 			System.out.println("Would you like to continue? Y / N");
 			String choice = null;
