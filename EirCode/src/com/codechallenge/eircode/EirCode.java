@@ -4,7 +4,7 @@ import java.util.Scanner;
 
 /**
  *
- * EirCode App by Greg Harman, Alex Scanlan, James
+ * EirCode App by Greg Harman, Alex Scanlan, James? 
  *
  */
 
@@ -12,17 +12,17 @@ import java.util.Scanner;
 
 public class EirCode {
 
-	String[] eirArray = {"D02Y006", "D04C932", "D15XR2R", "D03RR27", "D24H510", "D02XE81", "D02P656", "", "", ""};
-	String[] addressArray = {"5 Merrion Square North, Dublin 2", "10 Burlington Road, Dublin 4", "Dunsink Observatory, Dunsink Lane, Dublin 15", "26 KINCORA ROAD, Clontarf, Dublin 3", "Partas, 4A BROOKFIELD ENTERPRISE CENTRE, Dublin 24",
+	private  String[] eirArray ={"D02Y006", "D04C932", "D15XR2R", "D03RR27", "D24H510", "D02XE81", "D02P656", "", "", ""};
+	private String[] addressArray = {"5 Merrion Square North, Dublin 2", "10 Burlington Road, Dublin 4", "Dunsink Observatory, Dunsink Lane, Dublin 15", "26 KINCORA ROAD, Clontarf, Dublin 3", "Partas, 4A BROOKFIELD ENTERPRISE CENTRE, Dublin 24",
 			"HODGES FIGGIS, 56-58 DAWSON STREET, Dublin 2", "CENTRAL BANK OF IRELAND, DAME STREET, Dublin 2", "", "", ""};
 
-	static Scanner scan;
-	static String input = "";
-	static int count = 7;
+	private static Scanner scan;
+	private static StringBuilder input = new StringBuilder ("");
+	private static int count = 7;
 
 	public static void main(String[] args) {
 
-
+		System.out.println("Welcome to EirApp.");
 
 		boolean quit = true;
 		EirCode ec = new EirCode();
@@ -90,14 +90,14 @@ public class EirCode {
 			scan = new Scanner(System.in);
 			System.out.print("Please enter an EirCode (Valid format is XXX XXXX): ");
 
-			input = scan.nextLine();
-			input = input.replaceAll("\\s", "");
+			input = new StringBuilder(scan.nextLine());
+			input = replaceAllChar(input);
 
 			if(input.length() != 7){
 				System.out.println("Invalid format, Valid format is XXX XXXX");
 			}else{
-
-				eirArray[count] = input;
+				eirArray.toString();
+				eirArray[count] = input.toString();
 				boolean addressValid = true;
 
 				do{
@@ -105,10 +105,10 @@ public class EirCode {
 					scan = new Scanner(System.in);
 					System.out.print("Please enter an address: ");
 
-					input = scan.nextLine();
+					StringBuilder input = new StringBuilder(scan.nextLine());
 
 					if(!input.equals("")){
-						addressArray[count] = input;
+						addressArray[count] = input.toString();
 						addressValid = false;
 						System.out.println("EirCode and address saved.");
 
@@ -127,7 +127,7 @@ public class EirCode {
 
 
 		}else{
-			System.out.println("You have entered the max amount of EirCode's and address's.");
+			System.out.println("You have entered the max amount of EirCodes and addresses.");
 		}
 
 
@@ -140,18 +140,17 @@ public class EirCode {
 		System.out.print("Please enter an area code for Dublin (Valid format is DXX): ");
 
 		boolean found = false;
-		String input = "";
+		StringBuilder input ;
 
-		input = scan.nextLine();
-
-		input = input.replaceAll("\\s", "");
+		input = new StringBuilder(scan.nextLine());
+		input = replaceAllChar(input);
 
 		if(input.length() == 3){
 
 			for(int i = 0; i < eirArray.length; ++i){
 
 				if(!eirArray[i].equals("")){
-					if(input.equalsIgnoreCase(eirArray[i].substring(0, 3))){
+					if(input.toString().equalsIgnoreCase(eirArray[i].substring(0, 3))){
 
 						System.out.println("The address you're looking for is: " + addressArray[i]);
 						found = true;
@@ -178,15 +177,18 @@ public class EirCode {
 		System.out.print("Please enter an address: ");
 
 		boolean found = false;
-		String input = "";
+		StringBuilder input ;
 
-		input = scan.nextLine();
+		input = new StringBuilder(scan.nextLine());
+		input = replaceAllChar(input);
+
 
 		//input = input.replaceAll("\\s", "");
-		input = input.toLowerCase();
+		//input = input.toLowerCase();
 		for(int i = 0; i < addressArray.length; ++i){
-			if(addressArray[i].toLowerCase().contains(input)){
-				System.out.println("The Eircode you're looking for is: " + eirArray[i].substring(0, 3)+" "+eirArray[i].substring(3, 7));
+			if(addressArray[i].toLowerCase().contains(input.toString().toLowerCase())){
+				System.out.println("Address: " + addressArray[i]);
+				System.out.println("The Eircode for this address is: " + eirArray[i].substring(0, 3)+" "+eirArray[i].substring(3, 7));
 				found = true;
 			}
 		}
@@ -197,11 +199,25 @@ public class EirCode {
 	}
 
 	private void displayMenu() {
-		System.out.println("\n1) Search by EirCode");
-		System.out.println("2) Search by address");
-		System.out.println("3) Search by postcode");
-		System.out.println("4) Enter EirCode and address");
-		System.out.println("5) Quit");
+
+		StringBuilder str = new StringBuilder();
+		str = new StringBuilder ("\nPlease pick an option below-");
+		System.out.println(str);
+		
+		str = new StringBuilder ("1) Search by EirCode");
+		System.out.println(str);
+		
+		str = new StringBuilder ("2) Search by address");
+		System.out.println(str);
+		
+		str = new StringBuilder ("3) Search by postcode");
+		System.out.println(str);
+		
+		str = new StringBuilder ("4) Enter EirCode and address");
+		System.out.println(str);
+		
+		str = new StringBuilder ("5) Quit");
+		System.out.println(str);
 
 	}
 
@@ -211,14 +227,14 @@ public class EirCode {
 		System.out.print("Please enter an EirCode (Valid format is XXX XXXX): ");
 
 		boolean found = false;
-		String input = "";
+		StringBuilder input;
 
-		input = scan.nextLine();
+		input = new StringBuilder(scan.nextLine());
+		input = replaceAllChar(input);
 
-		input = input.replaceAll("\\s", "");
 
 		for(int i = 0; i < eirArray.length; ++i){
-			if(input.equalsIgnoreCase(eirArray[i])){
+			if(input.toString().equalsIgnoreCase(eirArray[i])){
 				System.out.println("The address you're looking for is: " + addressArray[i]);
 				found = true;
 			}
@@ -234,4 +250,16 @@ public class EirCode {
 
 	}
 
+	private StringBuilder replaceAllChar(StringBuilder input){
+
+		for( int i =0 ; i < input.length(); i++){
+			
+			if(input.charAt(i) == ' '){
+				input.insert(i, "");
+			}
+			
+		}
+		return input;
+
+	}
 }
