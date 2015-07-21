@@ -249,6 +249,7 @@ public class EirCode {
 		}
 
 	}
+	
 
 	private StringBuilder replaceAllChar(StringBuilder input){
 
